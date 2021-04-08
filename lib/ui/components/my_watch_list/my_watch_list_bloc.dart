@@ -18,6 +18,7 @@ class MyWatchListBloc extends Bloc<MyWatchListEvent, MyWatchListState> {
   ) async* {
     if (event is MyWatchListFetch) {
       yield MyWatchListLoading();
+      await Future.delayed(Duration(milliseconds: 100));
 
       yield* _fetchData(event);
     }

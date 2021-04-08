@@ -19,6 +19,7 @@ class MyLeagueBloc extends Bloc<MyLeagueEvent, MyLeagueState> {
   ) async* {
     if (event is MyLeagueFetch) {
       yield MyLeagueLoading();
+      await Future.delayed(Duration(milliseconds: 400));
 
       yield* _fetchData(event);
     }

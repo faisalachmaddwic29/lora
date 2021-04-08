@@ -2,6 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../utils/utils.dart';
 
+Widget loadingContainer(context, {bool apiCall}) {
+  if (apiCall) {
+    // jika masih proses kirim API
+    return Stack(
+      children: [
+        new Opacity(
+          opacity: 0.6,
+          child: const ModalBarrier(dismissible: false, color: Colors.black),
+        ),
+        new Center(
+          child: AnimatedContainer(
+            duration: Duration(milliseconds: 300),
+            width: 150.w(context),
+            height: 150.w(context),
+            padding: EdgeInsets.all(50),
+            decoration: BoxDecoration(
+              color: LoraColors.lightPrimary,
+              borderRadius: BorderRadius.circular(16.w(context)),
+            ),
+            child: new CircularProgressIndicator(
+              backgroundColor: LoraColors.primary.withOpacity(0.3),
+              // strokeWidth: 10.0,
+              valueColor: AlwaysStoppedAnimation<Color>(LoraColors.primary),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+  return null;
+}
+
 Widget myShimmer({@required Widget child}) {
   return Shimmer.fromColors(
     child: child,

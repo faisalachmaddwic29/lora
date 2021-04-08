@@ -18,6 +18,7 @@ class MyListBloc extends Bloc<MyListEvent, MyListState> {
   ) async* {
     if (event is MyListFetch) {
       yield MyListLoading();
+      await Future.delayed(Duration(milliseconds: 800));
 
       yield* _fetchData(event);
     }

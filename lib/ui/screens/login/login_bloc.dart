@@ -24,12 +24,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> mapEventToState(
     LoginEvent event,
   ) async* {
-    yield LoginLoading();
     if (event is LoginButtonPressed) {
+      yield LoginLoading();
+      await Future.delayed(Duration(milliseconds: 1000));
       String username = event.username.trim();
       String password = event.password.trim();
 
-      print(username);
       var result = await userRepository.authenticate(
           username: username, password: password);
 
