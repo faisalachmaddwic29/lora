@@ -56,9 +56,7 @@ class _AppState extends State<App> {
               return LoginScreen();
             }
 
-            return Scaffold(
-              body: Text('loading'),
-            );
+            return LoginScreen();
           },
         ),
       ),
